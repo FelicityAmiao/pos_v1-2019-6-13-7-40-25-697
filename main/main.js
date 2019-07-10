@@ -82,3 +82,10 @@ let getReceiptCostItems = (itemLists) => {
     console.log(receiptCostItems);
     return receiptCostItems;
 }
+
+//6
+let getTotalPrice = (receiptCostItems) => {
+    let totalPrice = receiptCostItems.reduce((x, y, index) => (index > 1 && index < 4)? x + y.sum - y.promotionPrice: x.sum - x.promotionPrice + y.sum - y.promotionPrice);
+    console.log(totalPrice);
+    return totalPrice;
+}

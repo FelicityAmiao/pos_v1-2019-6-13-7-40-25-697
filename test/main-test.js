@@ -142,6 +142,19 @@ describe('pos', () => {
     expect(console.log).toHaveBeenCalledWith(expectText);
   });  
 
+  //test getTotalPrice
+  it('should print totalPrice when call getTotalPrice', () => {
+    
+    const receiptCostItems = [{ barcode: 'ITEM000001', name: '雪碧', unit: '瓶', price: 3, count: 5, sum: 15, promotionPrice: 6 }, { barcode: 'ITEM000003', name: '荔枝', unit: '斤', price: 15, count: 2.5, sum: 37.5, promotionPrice: 0 }, { barcode: 'ITEM000005', name: '方便面', unit: '袋', price: 4.5, count: 3, sum: 13.5, promotionPrice: 4.5 }];
+
+    spyOn(console, 'log');
+
+    getTotalPrice(receiptCostItems);
+
+    const expectText = 55.50;
+    expect(console.log).toHaveBeenCalledWith(expectText);
+  });  
+
   //test printReceipt
 //   it('should print text', () => {
 
