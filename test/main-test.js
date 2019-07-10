@@ -60,6 +60,49 @@ describe('pos', () => {
     expect(console.log).toHaveBeenCalledWith(expectText);
   });
 
+  //test getItemLists
+  it('should print itemLists', () => {
+
+    const cartItems = [
+      'ITEM000001',
+      'ITEM000001',
+      'ITEM000001',
+      'ITEM000001',
+      'ITEM000001',
+      'ITEM000003-2.5',
+      'ITEM000005',
+      'ITEM000005-2',
+    ];
+
+    spyOn(console, 'log');
+
+    getItemLists(cartItems);
+
+    const expectText = [{ barcode: 'ITEM000001', name: '雪碧', unit: '瓶', price: 3, count: 5 }, { barcode: 'ITEM000003', name: '荔枝', unit: '斤', price: 15, count: 2.5 }, { barcode: 'ITEM000005', name: '方便面', unit: '袋', price: 4.5, count: 3 }];
+    expect(console.log).toHaveBeenCalledWith(expectText);
+  });
+
+  it('should print Barcode is not Exists!', () => {
+
+    const cartItems = [
+      'ITEM000001',
+      'ITEM000001',
+      'ITEM000009',
+      'ITEM000001',
+      'ITEM000001',
+      'ITEM000003-2.5',
+      'ITEM000005',
+      'ITEM000005-2',
+    ];
+
+    spyOn(console, 'log');
+
+    getItemLists(cartItems);
+
+    const expectText = "Barcode is not Exists!";
+    expect(console.log).toHaveBeenCalledWith(expectText);
+  });
+
   //test printReceipt
 //   it('should print text', () => {
 
