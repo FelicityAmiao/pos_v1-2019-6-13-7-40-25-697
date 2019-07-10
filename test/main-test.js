@@ -181,6 +181,26 @@ describe('pos', () => {
     expect(console.log).toHaveBeenCalledWith(expectText);
   });  
 
+  //test getReceipt
+  it('should print receipt when call getReceipt', () => {
+    
+    const receiptItems = {receiptCostItems: [{ barcode: 'ITEM000001', name: '雪碧', unit: '瓶', price: 3, count: 5, sum: 15, promotionPrice: 6 }, { barcode: 'ITEM000003', name: '荔枝', unit: '斤', price: 15, count: 2.5, sum: 37.5, promotionPrice: 0 }, { barcode: 'ITEM000005', name: '方便面', unit: '袋', price: 4.5, count: 3, sum: 13.5, promotionPrice: 4.5 }], totalPrice: 55.5, totalPromotion: 10.5};
+
+    spyOn(console, 'log');
+
+    getReceipt(receiptItems);
+
+    const expectText = `***<没钱赚商店>收据***
+名称：雪碧，数量：5瓶，单价：3.00(元)，小计：9.00(元)
+名称：荔枝，数量：2.5斤，单价：15.00(元)，小计：37.50(元)
+名称：方便面，数量：3袋，单价：4.50(元)，小计：9.00(元)
+----------------------
+总计：55.50(元)
+节省：10.50(元)
+**********************`;
+    expect(console.log).toHaveBeenCalledWith(expectText);
+  }); 
+
   //test printReceipt
 //   it('should print text', () => {
 

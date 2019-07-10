@@ -107,3 +107,17 @@ let getReceiptItems = (itemLists) => {
     console.log(receiptItems);
     return receiptItems;
 };
+
+//9
+let getReceipt = (receiptItems) => {
+    let receipt = `***<没钱赚商店>收据***`;
+    receiptItems.receiptCostItems.forEach((item) => receipt += `
+名称：${item.name}，数量：${item.count}${item.unit}，单价：${(item.price).toFixed(2)}(元)，小计：${(item.sum-item.promotionPrice).toFixed(2)}(元)`);
+    receipt +=`
+----------------------
+总计：${(receiptItems.totalPrice).toFixed(2)}(元)
+节省：${(receiptItems.totalPromotion).toFixed(2)}(元)
+**********************`;
+    console.log(receipt);
+    return receipt;
+};
