@@ -133,24 +133,24 @@ describe('pos', () => {
   it('should print receiptCostItems when call getReceiptCostItems', () => {
     
     const itemLists = [{ barcode: 'ITEM000001', name: '雪碧', unit: '瓶', price: 3, count: 5 }, { barcode: 'ITEM000003', name: '荔枝', unit: '斤', price: 15, count: 2.5 }, { barcode: 'ITEM000005', name: '方便面', unit: '袋', price: 4.5, count: 3 }];
-
+    
     spyOn(console, 'log');
-
+    
     getReceiptCostItems(itemLists);
-
+    
     const expectText = [{ barcode: 'ITEM000001', name: '雪碧', unit: '瓶', price: 3, count: 5, sum: 15, promotionPrice: 6 }, { barcode: 'ITEM000003', name: '荔枝', unit: '斤', price: 15, count: 2.5, sum: 37.5, promotionPrice: 0 }, { barcode: 'ITEM000005', name: '方便面', unit: '袋', price: 4.5, count: 3, sum: 13.5, promotionPrice: 4.5 }];
     expect(console.log).toHaveBeenCalledWith(expectText);
   });  
-
+  
   //test getTotalPrice
   it('should print totalPrice when call getTotalPrice', () => {
     
     const receiptCostItems = [{ barcode: 'ITEM000001', name: '雪碧', unit: '瓶', price: 3, count: 5, sum: 15, promotionPrice: 6 }, { barcode: 'ITEM000003', name: '荔枝', unit: '斤', price: 15, count: 2.5, sum: 37.5, promotionPrice: 0 }, { barcode: 'ITEM000005', name: '方便面', unit: '袋', price: 4.5, count: 3, sum: 13.5, promotionPrice: 4.5 }];
-
+    
     spyOn(console, 'log');
-
+    
     getTotalPrice(receiptCostItems);
-
+    
     const expectText = 55.50;
     expect(console.log).toHaveBeenCalledWith(expectText);
   });  
@@ -159,12 +159,25 @@ describe('pos', () => {
   it('should print totalPromotion when call getTotalPromotion', () => {
     
     const receiptCostItems = [{ barcode: 'ITEM000001', name: '雪碧', unit: '瓶', price: 3, count: 5, sum: 15, promotionPrice: 6 }, { barcode: 'ITEM000003', name: '荔枝', unit: '斤', price: 15, count: 2.5, sum: 37.5, promotionPrice: 0 }, { barcode: 'ITEM000005', name: '方便面', unit: '袋', price: 4.5, count: 3, sum: 13.5, promotionPrice: 4.5 }];
+    
+    spyOn(console, 'log');
+    
+    getTotalPromotion(receiptCostItems);
+    
+    const expectText = 10.5;
+    expect(console.log).toHaveBeenCalledWith(expectText);
+  });  
+  
+  //test getReceiptItems
+  it('should print receiptItems when call getReceiptItems', () => {
+    
+    const itemLists = [{ barcode: 'ITEM000001', name: '雪碧', unit: '瓶', price: 3, count: 5 }, { barcode: 'ITEM000003', name: '荔枝', unit: '斤', price: 15, count: 2.5 }, { barcode: 'ITEM000005', name: '方便面', unit: '袋', price: 4.5, count: 3 }];
 
     spyOn(console, 'log');
 
-    getTotalPromotion(receiptCostItems);
+    getReceiptItems(itemLists);
 
-    const expectText = 10.5;
+    const expectText = {receiptCostItems: [{ barcode: 'ITEM000001', name: '雪碧', unit: '瓶', price: 3, count: 5, sum: 15, promotionPrice: 6 }, { barcode: 'ITEM000003', name: '荔枝', unit: '斤', price: 15, count: 2.5, sum: 37.5, promotionPrice: 0 }, { barcode: 'ITEM000005', name: '方便面', unit: '袋', price: 4.5, count: 3, sum: 13.5, promotionPrice: 4.5 }], totalPrice: 55.5, totalPromotion: 10.5};
     expect(console.log).toHaveBeenCalledWith(expectText);
   });  
 

@@ -96,3 +96,14 @@ let getTotalPromotion = (receiptCostItems) => {
     console.log(totalPromotion);
     return totalPromotion;
 }
+
+//8
+let getReceiptItems = (itemLists) => {
+    let receiptItems = {
+        receiptCostItems: getReceiptCostItems(itemLists),
+        totalPrice: getTotalPrice(getReceiptCostItems(itemLists)),
+        totalPromotion: getTotalPromotion(getReceiptCostItems(itemLists))
+    }
+    console.log(receiptItems);
+    return receiptItems;
+};
