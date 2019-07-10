@@ -52,22 +52,33 @@ let getItemLists = (cartItems) => {
 
 //3
 let getSumCostLists = (itemLists) => {
-    console.log(itemLists.map((item) => {
+    let sumCostLists = itemLists.map((item) => {
         item.sum = item.price * item.count;
         return item;
-    }));
+    });
+    console.log(sumCostLists);
+    return sumCostLists;
 }
 
 //4
 let getBuyTwoFreeOneBarcodes = () => loadPromotions().filter((item) => item.type === "BUY_TWO_GET_ONE_FREE")[0].barcodes;
 let getPromotionLists = (sumCostLists) => {
     let buyTwoFreeOneBarcodes = getBuyTwoFreeOneBarcodes();
-    console.log(sumCostLists.map((item) => {
+    let promotionLists = sumCostLists.map((item) => {
         if(buyTwoFreeOneBarcodes.includes(item.barcode) && item.count >= 2) {
             item.promotionPrice = Math.floor(item.count / 2)*item.price;
         }else {
             item.promotionPrice = 0;
         }
         return item;
-    }))
+    });
+    console.log(promotionLists);
+    return promotionLists;
+}
+
+//5
+let getReceiptCostItems = (itemLists) => {
+    let receiptCostItems = getPromotionLists(getSumCostLists(itemLists));
+    console.log(receiptCostItems);
+    return receiptCostItems;
 }
