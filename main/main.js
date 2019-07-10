@@ -57,3 +57,17 @@ let getSumCostLists = (itemLists) => {
         return item;
     }));
 }
+
+//4
+let getBuyTwoFreeOneBarcodes = () => loadPromotions().filter((item) => item.type === "BUY_TWO_GET_ONE_FREE")[0].barcodes;
+let getPromotionLists = (sumCostLists) => {
+    let buyTwoFreeOneBarcodes = getBuyTwoFreeOneBarcodes();
+    console.log(sumCostLists.map((item) => {
+        if(buyTwoFreeOneBarcodes.includes(item.barcode) && item.count >= 2) {
+            item.promotionPrice = Math.floor(item.count / 2)*item.price;
+        }else {
+            item.promotionPrice = 0;
+        }
+        return item;
+    }))
+}
