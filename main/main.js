@@ -89,3 +89,10 @@ let getTotalPrice = (receiptCostItems) => {
     console.log(totalPrice);
     return totalPrice;
 }
+
+//7
+let getTotalPromotion = (receiptCostItems) => {
+    let totalPromotion = receiptCostItems.reduce((x, y, index) => (index > 1 && index < 4)? x + y.promotionPrice: x.promotionPrice + y.promotionPrice);
+    console.log(totalPromotion);
+    return totalPromotion;
+}
