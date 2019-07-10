@@ -112,11 +112,11 @@ describe('pos', () => {
 
     getSumCostLists(itemLists);
 
-    const expectText = [ 15, 37.5, 13.5 ];
-    expect(console.log).toHaveBeenCalledWith([{ barcode: 'ITEM000001', name: '雪碧', unit: '瓶', price: 3, count: 5, sum: 15 }, { barcode: 'ITEM000003', name: '荔枝', unit: '斤', price: 15, count: 2.5, sum: 37.5 }, { barcode: 'ITEM000005', name: '方便面', unit: '袋', price: 4.5, count: 3, sum: 13.5 }]);
+    const expectText = [{ barcode: 'ITEM000001', name: '雪碧', unit: '瓶', price: 3, count: 5, sum: 15 }, { barcode: 'ITEM000003', name: '荔枝', unit: '斤', price: 15, count: 2.5, sum: 37.5 }, { barcode: 'ITEM000005', name: '方便面', unit: '袋', price: 4.5, count: 3, sum: 13.5 }];
+    expect(console.log).toHaveBeenCalledWith(expectText);
   });  
 
-  
+
 
   //test printReceipt
 //   it('should print text', () => {
