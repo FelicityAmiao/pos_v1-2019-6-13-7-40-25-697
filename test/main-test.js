@@ -3,7 +3,7 @@
 describe('pos', () => {
 
   //test isCartItemsValid
-  it('should print valid', () => {
+  it('should print valid when call isCartItemsValid', () => {
 
     const cartItems = [
       'ITEM000001',
@@ -25,7 +25,7 @@ describe('pos', () => {
     expect(console.log).toHaveBeenCalledWith(expectText);
   });
 
-  it('should print CartItems is Empty', () => {
+  it('should print CartItems is Empty when call isCartItemsValid', () => {
 
     const cartItems = [];
 
@@ -38,7 +38,7 @@ describe('pos', () => {
     expect(console.log).toHaveBeenCalledWith(expectText);
   });
   
-  it('should print Barcode is not Exists!', () => {
+  it('should print Barcode is not Exists! when call isCartItemsValid', () => {
 
     const cartItems = [
       'ITEM000001',
@@ -61,7 +61,7 @@ describe('pos', () => {
   });
 
   //test getItemLists
-  it('should print itemLists', () => {
+  it('should print itemLists when call getItemLists', () => {
 
     const cartItems = [
       'ITEM000001',
@@ -82,7 +82,7 @@ describe('pos', () => {
     expect(console.log).toHaveBeenCalledWith(expectText);
   });
 
-  it('should print Barcode is not Exists!', () => {
+  it('should print Barcode is not Exists! when call getItemLists', () => {
 
     const cartItems = [
       'ITEM000001',
@@ -102,6 +102,21 @@ describe('pos', () => {
     const expectText = "Barcode is not Exists!";
     expect(console.log).toHaveBeenCalledWith(expectText);
   });
+
+  //test getSumCostLists
+  it('should print sumCostLists when call getSumCostLists', () => {
+
+    const itemLists = [{ barcode: 'ITEM000001', name: '雪碧', unit: '瓶', price: 3, count: 5 }, { barcode: 'ITEM000003', name: '荔枝', unit: '斤', price: 15, count: 2.5 }, { barcode: 'ITEM000005', name: '方便面', unit: '袋', price: 4.5, count: 3 }];
+
+    spyOn(console, 'log');
+
+    getSumCostLists(itemLists);
+
+    const expectText = [ 15, 37.5, 13.5 ];
+    expect(console.log).toHaveBeenCalledWith([{ barcode: 'ITEM000001', name: '雪碧', unit: '瓶', price: 3, count: 5, sum: 15 }, { barcode: 'ITEM000003', name: '荔枝', unit: '斤', price: 15, count: 2.5, sum: 37.5 }, { barcode: 'ITEM000005', name: '方便面', unit: '袋', price: 4.5, count: 3, sum: 13.5 }]);
+  });  
+
+  
 
   //test printReceipt
 //   it('should print text', () => {

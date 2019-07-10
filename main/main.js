@@ -50,3 +50,10 @@ let getItemLists = (cartItems) => {
     console.log(itemLists);
 }
 
+//3
+let getSumCostLists = (itemLists) => {
+    console.log(itemLists.map((item) => {
+        item.sum = item.price * item.count;
+        return item;
+    }));
+}
