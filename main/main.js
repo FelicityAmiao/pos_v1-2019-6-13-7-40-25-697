@@ -22,7 +22,11 @@ let loadResultValid = (cartItems) => {
     return isBarcodesValid(cartItems)? "valid": `Barcode is not Exists!`;
 }
 
-let isCartItemsValid = (cartItems) => console.log(loadResultValid(cartItems));
+let isCartItemsValid = (cartItems) => {
+    let isCartItemsValidResult = loadResultValid(cartItems);
+    console.log(isCartItemsValidResult);
+    return isCartItemsValidResult;
+};
 
 //2
 let getCounts = (cartItems) => {
@@ -43,11 +47,16 @@ let addCountToBuyItemLists = (buyItemLists, countObjs) => {
 }
 
 let getItemLists = (cartItems) => {
-    if(!(loadResultValid(cartItems) === "valid")) console.log(loadResultValid(cartItems));
+    if(!(loadResultValid(cartItems) === "valid")) {
+        let result = loadResultValid(cartItems);
+        console.log(result);
+        return result;
+    }
     let itemLists = loadAllItems().filter((item) => getCartItemBarcodes(cartItems).includes(item.barcode));
     let countObjs = getCounts(cartItems);
     addCountToBuyItemLists(itemLists, countObjs);
     console.log(itemLists);
+    return itemLists;
 }
 
 //3
@@ -121,3 +130,6 @@ let getReceipt = (receiptItems) => {
     console.log(receipt);
     return receipt;
 };
+
+//10
+let printReceipt = (cartItems) => getReceipt(getReceiptItems(getItemLists(cartItems)));
