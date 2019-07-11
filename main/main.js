@@ -132,4 +132,11 @@ let getReceipt = (receiptItems) => {
 };
 
 //10
-let printReceipt = (cartItems) => getReceipt(getReceiptItems(getItemLists(cartItems)));
+let printReceipt = (cartItems) => {
+    if(loadResultValid(cartItems) !== "valid") {
+        console.log(loadResultValid(cartItems));
+        return;
+    }
+    let result = getReceipt(getReceiptItems(getItemLists(cartItems)));
+    console.log(result);
+};
